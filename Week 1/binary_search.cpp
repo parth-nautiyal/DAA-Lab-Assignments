@@ -44,6 +44,8 @@ void solve()
 
 int main()
 {
+    freopen("input_binary.txt","r",stdin);
+    freopen("output_binary.txt","w",stdout);
     int t;
     cin>>t;
     while(t--)

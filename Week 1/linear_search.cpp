@@ -32,6 +32,8 @@ void solve()
 
 int main()
 {
+    freopen("input_linear.txt","r",stdin);
+    freopen("output_linear.txt","w",stdout);
     int t;
     cin>>t; //test cases
     while(t--)
