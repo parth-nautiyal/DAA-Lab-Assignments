@@ -2,26 +2,6 @@
 using namespace std;
 
 
-int binary_search(int A[],int n,int key)
-{
-    int beg,end,mid;
-    beg=0;              // beginning
-    end=n-1;            // ending
-    
-    while(beg<=end)
-    {
-        mid=(beg+end)/2; // middle
-        if(A[mid]==key)
-           {
-               return mid;
-           } 
-        else if(key<A[mid])
-            end=mid-1;
-        else 
-            beg=mid+1;
-    }
-    return -1;
-}
 
 int search(int A[],int n, int key, bool firstOccurence)
 {
@@ -65,14 +45,15 @@ void solve()
     }
     cin>>key;// enter the key
     int ans =-1;
-    int found =binary_search(A,n,key);
-    if(found==-1)
-    {
-        cout<<"Key not present"<<"\n";
-        return;
-    }
+
     int first = search(A,n,key,true);
     int last = search(A,n,key,false);
+
+    if(first==-1)
+    {
+        cout<<"Key not present";
+        return;
+    }
     
     ans=last-first+1;
     cout<<key<<" - "<<ans<<"\n";
