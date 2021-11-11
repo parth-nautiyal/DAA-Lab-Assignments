@@ -73,10 +73,9 @@ void solve()
     }
     int first = search(A,n,key,true);
     int last = search(A,n,key,false);
-    cout<<"first="<<first<<"\n";
-    cout<<"last="<<last<<"\n";
+    
     ans=last-first+1;
-    cout<<ans<<"\n";
+    cout<<key<<" - "<<ans<<"\n";
     return;
 }
 
