@@ -2,33 +2,41 @@
 using namespace std;
 
 
-int binary_search(int A[],int n,int key,int &c)
+
+int search(int A[],int n, int key, bool firstOccurence)
 {
-    int beg,end,mid;
-    beg=0;              // beginning
-    end=n-1;            // ending
-    c=0;                // comparisons
-    
-    while(beg<=end)
+    int l=0,h=n-1;
+    int ans=-1;
+    while(l<=h)
     {
-        mid=(beg+end)/2; // middle
-        if(A[mid]==key)
-           {
-               c++;
-               return mid;
-           } 
-        else if(key<A[mid])
-            end=mid-1;
-        else 
-            beg=mid+1;
-        c++;
+        int mid=(l+h)/2;
+        if(A[mid]<key)
+        {
+            l=mid+1;
+        }
+        else if(A[mid]>key)
+        {
+            h=mid-1;
+        }
+        else
+        {
+            ans=mid;
+            if(firstOccurence)
+            {
+                h=mid-1;
+            }
+            else
+            {
+                l=mid+1;
+            }
+        }
     }
-    return -1;
+    return ans;
 }
 
 void solve()
 {
-    int n,key,cmp; //size of array
+    int n,key; //size of array
     cin>>n;
     int A[n];
     for(int i=0;i<n;i++)
@@ -36,11 +44,22 @@ void solve()
         cin>>A[i];
     }
     cin>>key;// enter the key
-    sort(A,A+n); //sorting the array
-    int t = binary_search(A,n,key,cmp);
-    if(t>=0)cout<<"Present "<<cmp<<"\n";
-    else cout<<"Not Present "<<cmp<<"\n";
+    int ans =-1;
+
+    int first = search(A,n,key,true);
+    int last = search(A,n,key,false);
+
+    if(first==-1)
+    {
+        cout<<"Key not present";
+        return;
+    }
+    
+    ans=last-first+1;
+    cout<<key<<" - "<<ans<<"\n";
+    return;
 }
+
 
 int main()
 {
